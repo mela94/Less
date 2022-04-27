@@ -1,0 +1,144 @@
+// @p-sm: 8px;
+// @p-md: 16px;
+// @p-lg: 24px;
+
+// Mapas
+#padding() {
+    sm: 8px;
+    md: 16px;
+    lg: 24px;
+}
+
+// Estilos
+body {
+    background-color: @body-background;
+    color: @body-color;
+}
+
+.caja {
+    padding: #padding[sm];
+}
+
+.header {
+    padding: #padding[md];
+}
+
+.footer {
+    padding: #padding[lg];
+}
+
+.nav {
+
+    &.fondo-orange {
+        background-color: orange;
+    }
+
+    .lista {
+        display: flex;
+        list-style: none;
+    }
+
+    .item {
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    .link {
+        color: blue;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.main {
+    .lista {
+        background-color: red;
+    }
+
+    .item {
+        background-color: green;
+    }
+}
+
+/*
+    for (let i = 1; i < 5; i++) {
+        console.log(i); // console.log(@value);
+    }
+*/
+
+// `Hola ${value}`
+@columnas: 12;
+
+each(range(@columnas), {
+    .col-@{value} {
+        width: ((@value * 100%) / @columnas);
+    }
+})
+
+@lib: wq;
+
+.@{lib}-header {
+    color: red;
+}
+
+.@{lib}-nav {
+    color: red;
+}
+
+.@{lib}-footer {
+    color: red;
+}
+
+.caja(@width: 200px, @height: 200px) {
+    width: @width;
+    height: @height;
+    box-shadow: 1px 1px 5px black;
+    border: 1px solid red;
+}
+
+.sombra(@x: 1px, @y: 1px, @blur: 5px, @color: black) {
+    box-shadow: @x @y @blur @color;
+}
+
+.sombra-1 {
+    .sombra();
+}
+
+.caja-1 {
+    .caja();
+    background-color: blue;
+    color: white;
+}
+
+.caja-2 {
+    .caja(200px, 400px);
+    background-color: black;
+    color: white;
+}
+
+.caja-3 {
+    .caja(300px, 200px);
+    background-color: red;
+    color: yellow;
+}
+
+.opuesto {
+    background-color: spin(green, 180);
+}
+
+.rojo-claro {
+    color: lighten(red, 20%);
+}
+
+.rojo-oscuro {
+    color: darken(red, 20%);
+}
+
+.caja-4 {
+    background-color: lighten(red, 30%);
+    color: red;
+    border: 2px solid darken(red, 30%);
+}
